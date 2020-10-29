@@ -25,7 +25,7 @@ class YABU:
 
     def _load_config(self, config_path: str) -> None:
         # Loads the config schema to validate the config
-        schema = yamale.make_schema(path.join(path.dirname(__file__), "./config.schema.yaml"))
+        schema = yamale.make_schema(path.join(path.dirname(__file__), "resources/config.schema.yaml"))
 
         # Tries to load config file
         try:

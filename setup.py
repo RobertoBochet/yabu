@@ -19,7 +19,7 @@ setup(
     url='https://github.com/RobertoBochet/yabu',
     keywords=['backup', 'rsync'],
     install_requires=[
-        "PyYAML ~= 5.3.1"
+        "yamale ~= 3.0.4"
     ],
     classifiers=[
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',

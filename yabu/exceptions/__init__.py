@@ -1,13 +1,22 @@
-class RsyncNotAvailable(Exception):
+class YABUerror(Exception):
     pass
 
 
-class ConfigError(Exception):
+class RsyncNotAvailable(YABUerror):
+    def __str__(self) -> str:
+        return "'rsync' tool not found"
+
+
+class ConfigError(YABUerror):
     pass
 
 
 class ConfigNotFound(ConfigError):
-    pass
+    def __init__(self, file: str):
+        self._file = file
+
+    def __str__(self) -> str:
+        return "Configuration file '{}' not found".format(self._file)
 
 
 class InvalidConfig(ConfigError):

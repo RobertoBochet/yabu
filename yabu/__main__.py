@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 import argparse
 import logging
+import sys
 
 from yabu import YABU
+from yabu.exceptions import InvalidConfig, ConfigError
 from .log import logger_setup
 
 if __name__ == "__main__":
@@ -19,8 +21,6 @@ if __name__ == "__main__":
     # Parses args
     args = vars(parser.parse_args())
 
-    print(args)
-
     # Parses the verbosity level
     logger_setup({
                      0: logging.ERROR,
@@ -33,7 +33,11 @@ if __name__ == "__main__":
     del args["log_level"]
 
     # Creates an instance of YABU
-    yabu = YABU(**args)
+    try:
+        yabu = YABU(**args)
+    except ConfigError as e:
+        print(e)
+        sys.exit(1)
 
     # Starts backup operations
     yabu.start()

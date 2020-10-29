@@ -1,8 +1,13 @@
 import logging
+from pprint import pprint
 from shutil import which
+from os import path
+
+import yamale
+from yamale import YamaleError
+from yaml.scanner import ScannerError
 
 from yabu import exceptions
-import yaml
 
 _LOGGER = logging.getLogger(__package__)
 
@@ -19,9 +24,36 @@ class YABU:
         pass
 
     def _load_config(self, config_path: str) -> None:
-        pass
+        # Loads the config schema to validate the config
+        schema = yamale.make_schema(path.join(path.dirname(__file__), "./config.schema.yaml"))
+
+        # Tries to load config file
+        try:
+            config = yamale.make_data(config_path)
+        except FileNotFoundError:
+            _LOGGER.error("Configuration file '{}' not found".format(config_path))
+            raise exceptions.ConfigNotFound(config_path)
+        except ScannerError as e:
+            _LOGGER.error("Invalid configuration file '{}'\n{}".format(config_path, e))
+            raise exceptions.InvalidConfig(e)
+
+        # Tries to validate the configuration with the schema
+        try:
+            yamale.validate(schema, config)
+        except YamaleError as e:
+            _LOGGER.error("Invalid configuration file '{}'\n{}".format(config_path, e))
+            raise exceptions.InvalidConfig(e)
+
+        # Saves the config
+        self._config = config
+        _LOGGER.info("Configuration loaded")
 
     @staticmethod
     def _check_tools() -> None:
+        # Checks if 'rsync' is available
         if which("rsync") is None:
-            raise exceptions.RsyncNotAvailable()
+            e = exceptions.RsyncNotAvailable
+            _LOGGER.error(e)
+            raise e
+
+        _LOGGER.info("All the needed tools are available")

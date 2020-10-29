@@ -1,9 +1,13 @@
+from os import path
+
 from setuptools import setup, find_packages
 
-__version__ = "0.0"
-exec(open("./yabu/version.py").read())
+__version__ = None
+exec(open(path.join(path.dirname(__file__), "./yabu/version.py")).read())
+if __version__ == "dev":
+    __version__ = "0.0"
 
-with open("README.md") as f:
+with open(path.join(path.dirname(__file__), "README.md")) as f:
     _LONG_DESCRIPTION = f.read()
 
 setup(

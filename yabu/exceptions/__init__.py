@@ -21,3 +21,27 @@ class ConfigNotFound(ConfigError):
 
 class InvalidConfig(ConfigError):
     pass
+
+
+class BackupError(YABUerror):
+    pass
+
+
+class LocalPathNotWritable(BackupError):
+    def __init__(self, path: str):
+        self._path = path
+
+    def __str__(self) -> str:
+        return "Directory '{}' is not writable".format(self._path)
+
+
+class FailedTarget(BackupError):
+    def __init__(self, path: str):
+        self._path = path
+
+    def __str__(self) -> str:
+        return "Failed sync of '{}'".format(self._path)
+
+
+class FailedTask(BackupError):
+    pass

@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
     # creates an instance of YABU
     try:
-        yabu = YABU(**args)
+        yabu = YABU.make_from_config(**args)
     except ConfigError as e:
         _LOGGER.critical("Configuration issue: I give up")
         sys.exit(1)

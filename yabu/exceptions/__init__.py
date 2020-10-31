@@ -23,11 +23,11 @@ class InvalidConfig(ConfigError):
     pass
 
 
-class BackupError(YABUerror):
+class BackupTaskError(YABUerror):
     pass
 
 
-class LocalPathNotWritable(BackupError):
+class LocalPathNotWritable(BackupTaskError):
     def __init__(self, path: str):
         self._path = path
 
@@ -35,7 +35,15 @@ class LocalPathNotWritable(BackupError):
         return "Directory '{}' is not writable".format(self._path)
 
 
-class FailedTarget(BackupError):
+class IdentityFileUnreadable(BackupTaskError):
+    def __init__(self, file: str):
+        self._file = file
+
+    def __str__(self) -> str:
+        return "Identity file '{}' is not readable".format(self._file)
+
+
+class TargetFailed(BackupTaskError):
     def __init__(self, path: str):
         self._path = path
 
@@ -43,5 +51,5 @@ class FailedTarget(BackupError):
         return "Failed sync of '{}'".format(self._path)
 
 
-class FailedTask(BackupError):
+class TaskFailed(BackupTaskError):
     pass

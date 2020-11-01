@@ -66,7 +66,7 @@ class BackupTask:
 
         # if provided adds the identity file
         if self._identity_file is not None:
-            command += ["-e", "'ssh -i {}'".format(self._identity_file)]
+            command += ["-e", "'ssh -i {} -o IdentitiesOnly=yes'".format(self._identity_file)]
 
         # if required allow delete local files
         if self._delete_old:

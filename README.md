@@ -8,12 +8,11 @@
 
 **YABU** is a utility that exploiting `rsync` allows to automatize backup tasks also for remote servers. 
 
-
 ## Install
 
 **YABU** required to work the `rsync` tool, you can easily retrieves it from your package manager:
 
-### From pypi
+### From pypi (recommended)
 
 You can install **YABU** from **pypi** using **pip**.
 
@@ -30,3 +29,37 @@ git clone https://github.com/RobertoBochet/yabu.git
 cd yabu
 python3 setup.py install --user 
 ```
+
+## Usage
+
+```shell script
+python -m yabu -h
+```
+```text
+usage: python -m yabu [-h] [-c CONFIG_PATH] [-v]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -c CONFIG_PATH, --config CONFIG_PATH
+                        configuration file path
+  -v                    number of -v defines level of verbosity
+```
+
+*Before start **YABU** you must create a custom configuration file (see configuration section).*
+
+## Configuration
+
+The whole **YABU** behaviour can be configured with its `config.yaml`.
+You can provide to **YABU** a custom configuration file exploiting argument `-c`, if you will not do it, **YABU** will look for it in the default path `/etc/yabu/config.yaml`. 
+
+### `config.yaml` structure
+
+- `tasks` *[dict\<string,dict\>]* is a dict of the tasks that will be done, each task has a custom name as key and it has a specific struct
+
+    - `remote_base_path` *[string]*
+        the base path of the remote server
+    
+    - `targets` *[list\<string\>]*
+        a list of the paths that have to be backuped
+
+*A complete schema of config file can be found in `yabu/resources/config.schema.yaml`.*

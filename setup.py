@@ -31,6 +31,7 @@ setup(
     },
     data_files=[
         ("", [
+            "config.example.yaml",
             "utilities/systemd_units/yabu.service",
             "utilities/systemd_units/yabu.timer"
         ])

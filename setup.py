@@ -29,6 +29,12 @@ setup(
     package_data={
         "yabu.resources": ["config.schema.yaml"]
     },
+    data_files=[
+        ("", [
+            "utilities/systemd_units/yabu.service",
+            "utilities/systemd_units/yabu.timer"
+        ])
+    ],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: System Administrators",

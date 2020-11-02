@@ -11,7 +11,7 @@ _LOGGER = logging.getLogger(__package__)
 
 if __name__ == "__main__":
     # gets inline arguments
-    parser = argparse.ArgumentParser(prog="yabu")
+    parser = argparse.ArgumentParser(prog="python -m yabu")
 
     parser.add_argument("-c", "--config", dest="config_path", default="/etc/yabu/config.yaml",
                         help="configuration file path")

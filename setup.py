@@ -23,11 +23,11 @@ setup(
     url="https://github.com/RobertoBochet/yabu",
     keywords=["backup", "rsync"],
     install_requires=[
-        "yamale ~= 3.0.4",
+        "yamale~=3.0.4",
         "PyYAML~=5.3.1"
     ],
     package_data={
-        "yabu.resources": ["config.schema.yaml"]
+        "yabu": ["resources/config.schema.yaml"]
     },
     data_files=[
         ("", [

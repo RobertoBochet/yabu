@@ -5,12 +5,17 @@
 [![GitHub](https://img.shields.io/github/license/robertobochet/yabu?color=blue)](https://github.com/RobertoBochet/yabu/blob/master/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/yabu?color=yellow&label=pypi%20version)](https://pypi.org/project/yabu/)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/robertobochet/yabu/Upload%20Python%20Package?label=pypi%20build)](https://pypi.org/project/yabu/)
+[![AUR version](https://img.shields.io/aur/version/python-yabu)](https://aur.archlinux.org/packages/python-yabu/)
 
 **YABU** is a utility that exploiting `rsync` allows to automatize backup tasks also for remote servers. 
 
 ## Install
 
 **YABU** required to work the `rsync` tool, you can easily retrieves it from your package manager:
+
+### From AUR (recommended if you using Arch Linux)
+
+**YABU** is available also as **AUR** package. Yuo can find it as [`python-yabu`](https://aur.archlinux.org/packages/python-yabu/).
 
 ### From pypi (recommended)
 

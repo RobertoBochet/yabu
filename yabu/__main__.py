@@ -3,7 +3,7 @@ import argparse
 import logging
 import sys
 
-from yabu import YABU
+from yabu import YABU, __version__
 from yabu.exceptions import ConfigError
 from .log import logger_setup
 
@@ -17,6 +17,8 @@ if __name__ == "__main__":
                         help="configuration file path")
     parser.add_argument("-v", dest="log_level", action="count", default=0,
                         help="number of -v defines level of verbosity")
+
+    parser.add_argument("--version", action="version", version="yabu {}".format(__version__))
 
     # parses args
     args = vars(parser.parse_args())

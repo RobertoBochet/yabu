@@ -26,6 +26,11 @@ setup(
         "yamale~=3.0.4",
         "PyYAML~=5.3.1"
     ],
+    entry_points={
+        "console_scripts": [
+            "yabu = yabu.__main__:main"
+        ]
+    },
     package_data={
         "yabu": ["resources/config.schema.yaml"]
     },

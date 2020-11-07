@@ -38,16 +38,17 @@ python3 setup.py install --user
 ## Usage
 
 ```shell script
-python -m yabu -h
+yabu -h
 ```
 ```text
-usage: python -m yabu [-h] [-c CONFIG_PATH] [-v]
+usage: yabu [-h] [-c CONFIG_PATH] [-v] [--version]
 
 optional arguments:
   -h, --help            show this help message and exit
   -c CONFIG_PATH, --config CONFIG_PATH
                         configuration file path
   -v                    number of -v defines level of verbosity
+  --version             show program's version number and exit
 ```
 
 *Before start **YABU** you must create a custom configuration file (see configuration section).*

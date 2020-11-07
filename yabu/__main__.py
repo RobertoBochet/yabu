@@ -9,9 +9,10 @@ from .log import logger_setup
 
 _LOGGER = logging.getLogger(__package__)
 
-if __name__ == "__main__":
+
+def main() -> int:
     # gets inline arguments
-    parser = argparse.ArgumentParser(prog="python -m yabu")
+    parser = argparse.ArgumentParser(prog="yabu")
 
     parser.add_argument("-c", "--config", dest="config_path", default="/etc/yabu/config.yaml",
                         help="configuration file path")
@@ -34,9 +35,15 @@ if __name__ == "__main__":
         yabu = YABU.make_from_config(**args)
     except ConfigError as e:
         _LOGGER.critical("Configuration issue: I give up")
-        sys.exit(1)
+        return 1
 
     _LOGGER.info("YABU is ready to start")
 
     # starts backup operations
     yabu.start()
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
